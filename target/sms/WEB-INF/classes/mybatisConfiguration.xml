@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="com.supermarket.entity"/>
+    </typeAliases>
+    <!-- mybatis默认自动关闭数据库连接  关于mybatis详细资料：http://www.mybatis.org/mybatis-3/zh/configuration.html -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value=""/>
+            </transactionManager>
+            <!-- 连接本地oracle数据库信息 -->
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://griouges.cn:3306/sms2?useSSL=false"/>
+                <property name="username" value="sms2"/>
+                <property name="password" value="yyR6FMX7Szyj42Ly"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 整合资源，将其他的配置文件添加进 ,路径也是从src写起-->
+    <mappers>
+        <package name="com.supermarket.mapper"/>
+    </mappers>
+</configuration>
