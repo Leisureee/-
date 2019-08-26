@@ -117,7 +117,8 @@
                                     <a class="collapsed card-link" href="#">查看所有用户信息</a>
                                 </div>
                                 <div class="card-body card-block">
-                                    <a class="collapsed card-link" data-toggle="modal" data-target="#" href="#">新添一条用户记录</a>
+                                    <a class="collapsed card-link" data-toggle="modal" data-target="#"
+                                       href="#">新添一条用户记录</a>
                                 </div>
                                 <div id="addUser" class="modal fade" tabindex="-1">
                                     <jsp:include page="modal/user_modal.jsp"/>

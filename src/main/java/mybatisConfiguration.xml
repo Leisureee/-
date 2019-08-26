@@ -15,7 +15,8 @@
             <!-- 连接本地oracle数据库信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/sms2?useSSL=false"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/sms?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
                 <property name="username" value="root"/>
                 <property name="password" value="leisure."/>
             </dataSource>

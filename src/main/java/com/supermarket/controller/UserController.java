@@ -33,7 +33,7 @@ public class UserController extends HttpServlet {
             case "login": {
                 if (mapper.verifyUser(user) != null) {
                     user = mapper.verifyUser(user);
-                    request.setAttribute("user", user);
+                    request.getSession().setAttribute("user", user);
                     request.getRequestDispatcher("welcome.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("index.jsp?status=1");
@@ -53,7 +53,7 @@ public class UserController extends HttpServlet {
                 break;
             }
             case "exit": {
-                request.removeAttribute("user");
+                request.getSession().removeAttribute("user");
                 response.sendRedirect("index.jsp");
             }
         }
