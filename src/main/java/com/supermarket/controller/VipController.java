@@ -2,7 +2,7 @@ package com.supermarket.controller;
 
 import com.supermarket.entity.Vip;
 import com.supermarket.mapper.VipMapper;
-import com.supermarket.service.DBOperateSerive;
+import com.supermarket.service.DBOperateService;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class VipController extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SqlSession session = DBOperateSerive.getSession();
+        SqlSession session = DBOperateService.getSession();
         VipMapper mapper = session.getMapper(VipMapper.class);
         String action = request.getParameter("action");
         switch (action) {

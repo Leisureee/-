@@ -2,7 +2,7 @@ package com.supermarket.controller;
 
 import com.supermarket.entity.User;
 import com.supermarket.mapper.UserMapper;
-import com.supermarket.service.DBOperateSerive;
+import com.supermarket.service.DBOperateService;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.ServletException;
@@ -20,7 +20,7 @@ public class UserController extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SqlSession session = DBOperateSerive.getSession();
+        SqlSession session = DBOperateService.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
         String action = request.getParameter("action");
         String name = request.getParameter("name");

@@ -2,7 +2,7 @@ package com.supermarket.controller;
 
 import com.supermarket.entity.Goods;
 import com.supermarket.mapper.GoodsMapper;
-import com.supermarket.service.DBOperateSerive;
+import com.supermarket.service.DBOperateService;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.RequestDispatcher;
@@ -22,7 +22,7 @@ public class GoodsController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        SqlSession session = DBOperateSerive.getSession();
+        SqlSession session = DBOperateService.getSession();
         GoodsMapper mapper = session.getMapper(GoodsMapper.class);
         switch (action) {
             case "show": {

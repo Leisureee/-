@@ -2,7 +2,7 @@ package com.supermarket.controller;
 
 import com.supermarket.entity.Employee;
 import com.supermarket.mapper.EmployeeMapper;
-import com.supermarket.service.DBOperateSerive;
+import com.supermarket.service.DBOperateService;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class EmployeeController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        SqlSession session = DBOperateSerive.getSession();
+        SqlSession session = DBOperateService.getSession();
         EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
         switch (action) {
             case "show": {

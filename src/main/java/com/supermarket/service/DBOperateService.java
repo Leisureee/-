@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 
-public class DBOperateSerive {
+public class DBOperateService {
     private static SqlSessionFactory sqlSessionFactory;
     
     static {
