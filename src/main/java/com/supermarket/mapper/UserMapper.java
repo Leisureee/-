@@ -2,55 +2,62 @@ package com.supermarket.mapper;
 
 import com.supermarket.entity.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
 public interface UserMapper {
-    User getUserByName(String name);
-    
-    User verifyUser(User user);
+    /**
+     * 根据id在数据库中查找user
+     *
+     * @param id
+     * @return 查找到的结果
+     * @throws SQLException
+     */
+    User getUserById(int id) throws SQLException;
     
     /**
-     * @Description: get user by id
-     * @Date: 2019/6/21 23:21
-     * @Param: [id]
-     * @Return: com.supermarket.entity.User
+     * 根据name在数据库中查找user
+     *
+     * @param name
+     * @return 查找到的结果
+     * @throws SQLException
      */
-    User getUserById(int id);
+    User getUserByName(String name) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description: get all user
-     * @Date: 2019/6/22 1:33
-     * @Param: []
-     * @Return: java.util.List<com.supermarket.entity.User>
+     * 获取全部的user
+     * @return 查询结果集
+     * @throws SQLException
      */
-    List<User> getAllUser();
+    List<User> getAllUser() throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description: delete user by id
-     * @Date: 2019/6/22 1:34
-     * @Param: [id]
-     * @Return: void
+     * 根据user.name和user.password查询
+     * @param user
+     * @return 查询的结果
+     * @throws SQLException
      */
-    void deleteUserById(int id);
+    User verifyUser(User user) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description: insert a record
-     * @Date: 2019/6/22 1:34
-     * @Param: [user]
-     * @Return: void
+     * 根据id删除一条记录
+     * @param id
+     * @throws SQLException
      */
-    void insertUser(User user);
+    void deleteUserById(int id) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description: update a record by a new record
-     * @Date: 2019/6/22 1:36
-     * @Param: [user]
-     * @Return: void
+     * 插入一条记录
+     * @param user
+     * @throws SQLException
      */
-    void updateUser(User user);
+    void insertUser(User user) throws SQLException;
+    
+    /**
+     * 根据id查找user并更新信息
+     * @param user
+     * @throws SQLException
+     */
+    void updateUser(User user) throws SQLException;
 }

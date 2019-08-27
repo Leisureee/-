@@ -1,9 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.Vip;
-import com.supermarket.mapper.VipMapper;
-import com.supermarket.service.DBOperateService;
-import org.apache.ibatis.session.SqlSession;
+import com.supermarket.service.entityservice.VipService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "VipController", urlPatterns = "/VipController")
@@ -21,44 +20,49 @@ public class VipController extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SqlSession session = DBOperateService.getSession();
-        VipMapper mapper = session.getMapper(VipMapper.class);
+        VipService service = new VipService();
+    
         String action = request.getParameter("action");
-        switch (action) {
-            case "show": {
-                List<Vip> vipList = mapper.getAllVip();
-                request.setAttribute("vipList", vipList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
+    
+        try {
+            switch (action) {
+                case "show": {
+                    List<Vip> vipList = service.getAllVip();
+                    request.setAttribute("vipList", vipList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "delete": {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    service.deleteVipById(id);
+                    service.commit();
+                    List<Vip> vipList = service.getAllVip();
+                    request.setAttribute("vipList", vipList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "update": {
+                    Vip vip = getVipFromRequest(request, false);
+                    service.updateVip(vip);
+                    service.commit();
+                    List<Vip> vipList = service.getAllVip();
+                    request.setAttribute("vipList", vipList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "insert": {
+                    Vip vip = getVipFromRequest(request, true);
+                    service.insertVip(vip);
+                    service.commit();
+                    service.commit();
+                    List<Vip> vipList = service.getAllVip();
+                    request.setAttribute("vipList", vipList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
             }
-            case "delete": {
-                int id = Integer.parseInt(request.getParameter("id"));
-                mapper.deleteVipById(id);
-                session.commit();
-                List<Vip> vipList = mapper.getAllVip();
-                request.setAttribute("vipList", vipList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
-            case "update": {
-                Vip vip = getVipFromRequest(request, false);
-                mapper.updateVip(vip);
-                session.commit();
-                List<Vip> vipList = mapper.getAllVip();
-                request.setAttribute("vipList", vipList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
-            case "insert": {
-                Vip vip = getVipFromRequest(request, true);
-                mapper.insertVip(vip);
-                session.commit();
-                session.commit();
-                List<Vip> vipList = mapper.getAllVip();
-                request.setAttribute("vipList", vipList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     

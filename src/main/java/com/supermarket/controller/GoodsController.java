@@ -1,9 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.Goods;
-import com.supermarket.mapper.GoodsMapper;
-import com.supermarket.service.DBOperateService;
-import org.apache.ibatis.session.SqlSession;
+import com.supermarket.service.entityservice.GoodsService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "GoodsController", urlPatterns = "/GoodsController")
@@ -22,44 +21,49 @@ public class GoodsController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        SqlSession session = DBOperateService.getSession();
-        GoodsMapper mapper = session.getMapper(GoodsMapper.class);
-        switch (action) {
-            case "show": {
-                List<Goods> goodsList = mapper.getAllGoods();
-                request.setAttribute("goodsList", goodsList);
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-                rd.forward(request, response);
-                break;
+    
+        GoodsService service = new GoodsService();
+    
+        try {
+            switch (action) {
+                case "show": {
+                    List<Goods> goodsList = service.getAllGoods();
+                    request.setAttribute("goodsList", goodsList);
+                    RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+                    rd.forward(request, response);
+                    break;
+                }
+                case "delete": {
+                    service.deleteGoodsById(Integer.parseInt(request.getParameter("id")));
+                    service.commit();
+                    List<Goods> goodsList = service.getAllGoods();
+                    request.setAttribute("goodsList", goodsList);
+                    RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+                    rd.forward(request, response);
+                    break;
+                }
+                case "update": {
+                    Goods goods = getUserFromRequest(request, false);
+                    service.updateGoods(goods);
+                    service.commit();
+                    List<Goods> goodsList = service.getAllGoods();
+                    request.setAttribute("goodsList", goodsList);
+                    RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+                    rd.forward(request, response);
+                    break;
+                }
+                case "insert": {
+                    Goods goods = getUserFromRequest(request, true);
+                    service.insertGoods(goods);
+                    service.commit();
+                    List<Goods> goodsList = service.getAllGoods();
+                    request.setAttribute("goodsList", goodsList);
+                    RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+                    rd.forward(request, response);
+                }
             }
-            case "delete": {
-                mapper.deleteGoodsById(Integer.parseInt(request.getParameter("id")));
-                session.commit();
-                List<Goods> goodsList = mapper.getAllGoods();
-                request.setAttribute("goodsList", goodsList);
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-                rd.forward(request, response);
-                break;
-            }
-            case "update": {
-                Goods goods = getUserFromRequest(request, false);
-                mapper.updateGoods(goods);
-                session.commit();
-                List<Goods> goodsList = mapper.getAllGoods();
-                request.setAttribute("goodsList", goodsList);
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-                rd.forward(request, response);
-                break;
-            }
-            case "insert": {
-                Goods goods = getUserFromRequest(request, true);
-                mapper.insertGoods(goods);
-                session.commit();
-                List<Goods> goodsList = mapper.getAllGoods();
-                request.setAttribute("goodsList", goodsList);
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-                rd.forward(request, response);
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     

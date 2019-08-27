@@ -2,51 +2,43 @@ package com.supermarket.mapper;
 
 import com.supermarket.entity.Employee;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface EmployeeMapper {
     /**
-     * @Author: Griouges
-     * @Description:
-     * @Date: 2019/6/22 2:58
-     * @Param: [id]
-     * @Return: com.supermarket.entity.Employee
+     * 根据id在数据库中查找employee
+     * @param id
+     * @return 查找到的结果
+     * @throws SQLException
      */
-    Employee getEmployeeById(int id);
+    Employee getEmployeeById(int id) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description:
-     * @Date: 2019/6/22 1:46
-     * @Param: []
-     * @Return: java.util.List<com.supermarket.entity.Employee>
+     * 获取全部的employee
+     * @return 查询结果集
+     * @throws SQLException
      */
-    List<Employee> getAllEmployee();
+    List<Employee> getAllEmployee() throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description:
-     * @Date: 2019/6/22 1:47
-     * @Param: [employee]
-     * @Return: void
+     * 插入一条记录
+     * @param employee
+     * @throws SQLException
      */
-    void insertEmployee(Employee employee);
+    void insertEmployee(Employee employee) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description:
-     * @Date: 2019/6/22 1:48
-     * @Param: [employee]
-     * @Return: void
+     * 根据id删除一条记录
+     * @param id
+     * @throws SQLException
      */
-    void deleteEmployeeById(int id);
+    void deleteEmployeeById(int id) throws SQLException;
     
     /**
-     * @Author: Griouges
-     * @Description:
-     * @Date: 2019/6/22 1:48
-     * @Param: [employee]
-     * @Return: void
+     * 根据id查找employee并更新信息
+     * @param employee
+     * @throws SQLException
      */
-    void updateEmployee(Employee employee);
+    void updateEmployee(Employee employee) throws SQLException;
 }

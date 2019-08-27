@@ -1,4 +1,4 @@
-package com.supermarket.service;
+package com.supermarket.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 
-public class DBOperateService {
+public class SessionManager {
     private static SqlSessionFactory sqlSessionFactory;
     
     static {

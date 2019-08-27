@@ -1,9 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.Employee;
-import com.supermarket.mapper.EmployeeMapper;
-import com.supermarket.service.DBOperateService;
-import org.apache.ibatis.session.SqlSession;
+import com.supermarket.service.entityservice.EmployeeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "EmployeeController", urlPatterns = "/EmployeeController")
@@ -21,43 +20,48 @@ public class EmployeeController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        SqlSession session = DBOperateService.getSession();
-        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-        switch (action) {
-            case "show": {
-                List<Employee> employeeList = mapper.getAllEmployee();
-                request.setAttribute("employeeList", employeeList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
+    
+        EmployeeService service = new EmployeeService();
+    
+        try {
+            switch (action) {
+                case "show": {
+                    List<Employee> employeeList = service.getAllEmployee();
+                    request.setAttribute("employeeList", employeeList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "delete": {
+                    service.deleteEmployeeById(Integer.parseInt(request.getParameter("id")));
+                    service.commit();
+                    List<Employee> employeeList = service.getAllEmployee();
+                    request.setAttribute("employeeList", employeeList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "update": {
+                    Employee employee = getEmployeeFromRequest(request, false);
+                    service.updateEmployee(employee);
+                    service.commit();
+                    List<Employee> employeeList = service.getAllEmployee();
+                    request.setAttribute("employeeList", employeeList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                case "insert": {
+                    Employee employee = getEmployeeFromRequest(request, true);
+                    service.insertEmployee(employee);
+                    service.commit();
+                    List<Employee> employeeList = service.getAllEmployee();
+                    request.setAttribute("employeeList", employeeList);
+                    request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                    break;
+                }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + action);
             }
-            case "delete": {
-                mapper.deleteEmployeeById(Integer.parseInt(request.getParameter("id")));
-                session.commit();
-                List<Employee> employeeList = mapper.getAllEmployee();
-                request.setAttribute("employeeList", employeeList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
-            case "update": {
-                Employee employee = getEmployeeFromRequest(request, false);
-                mapper.updateEmployee(employee);
-                session.commit();
-                List<Employee> employeeList = mapper.getAllEmployee();
-                request.setAttribute("employeeList", employeeList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
-            case "insert": {
-                Employee employee = getEmployeeFromRequest(request, true);
-                mapper.insertEmployee(employee);
-                session.commit();
-                List<Employee> employeeList = mapper.getAllEmployee();
-                request.setAttribute("employeeList", employeeList);
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
-                break;
-            }
-            default:
-                throw new IllegalStateException("Unexpected value: " + action);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     
