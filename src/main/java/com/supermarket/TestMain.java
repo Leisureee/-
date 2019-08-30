@@ -1,13 +1,13 @@
 package com.supermarket;
 
-import com.supermarket.service.entityservice.UserService;
+import com.supermarket.service.entityservice.GoodsService;
 
 import java.sql.SQLException;
 
 
 public class TestMain {
     public static void main(String[] args) throws SQLException {
-        UserService us = new UserService();
-        System.out.println(us.getAllUser());
+        GoodsService service = new GoodsService();
+        System.out.println(service.getGoodsById(1));
     }
 }

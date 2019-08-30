@@ -13,7 +13,7 @@
         <result column="ewage" property="wage"/>
         <result column="etel" property="tel"/>
     </resultMap>
-    <select id="getEmployeeById" resultType="int" resultMap="Mapper_Employee">
+    <select id="getEmployeeById" parameterType="int" resultMap="Mapper_Employee">
         select *
         from employee
         where id = #{id}
