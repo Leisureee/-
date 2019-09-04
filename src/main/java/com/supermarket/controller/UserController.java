@@ -1,7 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.User;
-import com.supermarket.service.entityservice.UserService;
+import com.supermarket.service.support.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

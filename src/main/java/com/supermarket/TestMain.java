@@ -1,6 +1,6 @@
 package com.supermarket;
 
-import com.supermarket.service.entityservice.GoodsService;
+import com.supermarket.service.support.GoodsService;
 
 import java.sql.SQLException;
 

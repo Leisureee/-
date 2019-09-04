@@ -1,4 +1,4 @@
-package com.supermarket.service.entityservice;
+package com.supermarket.service.support;
 
 import com.supermarket.entity.Goods;
 import com.supermarket.mapper.GoodsMapper;

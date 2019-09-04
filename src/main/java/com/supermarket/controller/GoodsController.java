@@ -1,7 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.Goods;
-import com.supermarket.service.entityservice.GoodsService;
+import com.supermarket.service.support.GoodsService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

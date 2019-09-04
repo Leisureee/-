@@ -1,7 +1,7 @@
 package com.supermarket.controller;
 
 import com.supermarket.entity.Vip;
-import com.supermarket.service.entityservice.VipService;
+import com.supermarket.service.support.VipService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package com.supermarket.service.entityservice;
+package com.supermarket.service.support;
 
 import com.supermarket.entity.User;
 import com.supermarket.mapper.UserMapper;
@@ -14,6 +14,7 @@ import java.util.List;
  * @Author Liar
  * @Date 2019/8/27 18:39
  */
+
 public class UserService extends AbstractService implements UserMapper {
     
     private UserMapper mapper;
