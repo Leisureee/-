@@ -34,7 +34,7 @@ public class AccountController {
 
     @PostMapping("register")
     public String register(User user) throws SQLException {
-        if (user.getName() != null && userService.getUserByName(user.getName()) != null) {
+        if (user.getName() == null || userService.getUserByName(user.getName()) != null) {
             return "redirect:/account/login?status=2";
         }
         userService.insertUser(user);

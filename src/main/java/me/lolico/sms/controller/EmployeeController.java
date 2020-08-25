@@ -2,8 +2,10 @@ package me.lolico.sms.controller;
 
 import me.lolico.sms.entity.Employee;
 import me.lolico.sms.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -46,11 +48,16 @@ public class EmployeeController {
                 break;
             }
             default:
-                throw new IllegalStateException("Unexpected value: " + action);
+                throw new IllegalStateException("Unexpected action: " + action);
         }
         List<Employee> employeeList = employeeService.getAllEmployee();
         redirectAttributes.addFlashAttribute("employeeList", employeeList);
         return "redirect:/index";
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<?> handle() {
+        return ResponseEntity.badRequest().build();
     }
 
 }
