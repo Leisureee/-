@@ -137,6 +137,7 @@
         <div class="title">账号登录</div>
         <form action="${pageContext.request.contextPath}/account/login" id="l_form" method="post">
             <ul>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="hidden" name="action" value="login"/>
                 <li>
                     <input type="text" placeholder="请输入您的账号" class="input" id="lcno" name="name">
@@ -163,6 +164,7 @@
         <div class="title">账号注册</div>
         <form action="${pageContext.request.contextPath}/account/register" id="r_form" method="post">
             <ul>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="hidden" name="action" value="register"/>
                 <li>
                     <input type="text" placeholder="请输入您的账号" class="input" id="cno" name="name">

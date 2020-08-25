@@ -6,6 +6,7 @@
         </div>
         <div class="modal-body">
             <form class="form-group" action="GoodsController" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="form-group">
                     <label>商品编号</label>
                     <input class="form-control" type="text" placeholder="商品编号"

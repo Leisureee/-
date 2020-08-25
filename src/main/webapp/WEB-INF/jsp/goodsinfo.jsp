@@ -32,8 +32,9 @@
             <td>
                 <form action="GoodsController" method="post">
                     <input type="hidden" name="id" value="${v["id"]}">
-                    <button type="submit" class="btn btn-sm btn-danger" name="action"
-                            value="delete">删除
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit" class="btn btn-sm btn-danger" name="action" value="delete">
+                        删除
                     </button>
                 </form>
             </td>

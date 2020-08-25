@@ -30,6 +30,7 @@
             <td>
                 <form action="VipController" method="post">
                     <input type="hidden" name="id" value="${v["id"]}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-sm btn-danger" name="action" value="delete">
                         删除
                     </button>
