@@ -1,6 +1,7 @@
 package me.lolico.sms.controller;
 
 import me.lolico.sms.entity.Vip;
+import me.lolico.sms.lang.InvalidActionException;
 import me.lolico.sms.service.VipService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class VipController {
                 break;
             }
             default:
-                throw new IllegalStateException("Unexpected value: " + action);
+                throw new InvalidActionException(action);
         }
         List<Vip> vipList = vipService.getAllVip();
         redirectAttributes.addFlashAttribute("vipList", vipList);

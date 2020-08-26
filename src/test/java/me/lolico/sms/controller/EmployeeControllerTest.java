@@ -70,8 +70,8 @@ public class EmployeeControllerTest {
 
     @Test
     @WithMockUser
-    public void badRequestWhenPostWithValidAction() throws Exception {
-        mvc.perform(post("/EmployeeController?action=valid").with(csrf()))
+    public void badRequestWhenPostWithInvalidAction() throws Exception {
+        mvc.perform(post("/EmployeeController?action=invalid").with(csrf()))
                 .andExpect(status().isBadRequest());
     }
 
