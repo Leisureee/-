@@ -1,0 +1,35 @@
+language: java
+jdk:
+  - openjdk8
+
+jobs:
+  include:
+    - stage: test
+      script: ./mvnw test
+    - stage: package
+      script: ./mvnw clean package -DskipTests=true
+    - stage: install
+      script: ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+stages:
+  - test
+  - package
+  - install
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+branches:
+  only:
+    - boot
+
+cache:
+  directories:
+    - $HOME/.m2
+
+notifications:
+  email:
+    recipients:
+      - lolicol1@qq.com
+    on_failure: always
+    on_success: always
