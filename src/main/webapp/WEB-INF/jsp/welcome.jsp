@@ -36,8 +36,12 @@
                 <a class="navbar-brand" href="#">欢迎来到超市管理系统</a>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="navbar-nav">
+                        <form name="logoutForm" action="${pageContext.request.contextPath}/account/logout" method="post" hidden>
+                            <input name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input type="submit">安全登出</input>
+                        </form>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/account/logout">安全登出</a>
+                            <a class="nav-link" href="javascript:document.logoutForm.submit()">安全登出</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#">修改密码</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">修改资料</a></li>

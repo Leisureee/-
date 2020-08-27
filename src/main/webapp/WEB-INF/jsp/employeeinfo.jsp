@@ -49,6 +49,7 @@
                         <div class="modal-body">
                             <form class="form-group" action="EmployeeController" method="post">
                                 <input type="hidden" name="id" value="${v["id"]}">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label>员工编号</label>
                                     <input class="form-control" type="text" placeholder="员工编号" name="no" value="${v["no"]}">
@@ -79,8 +80,7 @@
                                     <input type="radio" name="sex" value="女" ${v["sex"]=="女"?"checked":""}>女
                                 </div>
                                 <div class="text-left">
-                                    <button class="btn btn-warning" type="reset">重置
-                                    </button>
+                                    <button class="btn btn-warning" type="reset">重置</button>
                                 </div>
                                 <div class="text-right">
                                     <button class="btn btn-primary" type="submit" name="action" value="update">

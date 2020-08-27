@@ -9,33 +9,27 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="form-group">
                     <label>员工编号</label>
-                    <input class="form-control" type="text" placeholder="员工编号"
-                           name="no">
+                    <input class="form-control" type="text" placeholder="员工编号" name="no">
                 </div>
                 <div class="form-group">
                     <label>员工名</label>
-                    <input class="form-control" type="text" placeholder="员工名"
-                           name="name">
+                    <input class="form-control" type="text" placeholder="员工名" name="name">
                 </div>
                 <div class="form-group">
                     <label>类别</label>
-                    <input class="form-control" type="text" placeholder="类别"
-                           name="category">
+                    <input class="form-control" type="text" placeholder="类别" name="category">
                 </div>
                 <div class="form-group">
                     <label>年龄</label>
-                    <input class="form-control" type="text" placeholder="年龄"
-                           name="age">
+                    <input class="form-control" type="text" placeholder="年龄" name="age">
                 </div>
                 <div class="form-group">
                     <label>联系电话</label>
-                    <input class="form-control" type="text" placeholder="联系电话"
-                           name="tel">
+                    <input class="form-control" type="text" placeholder="联系电话" name="tel">
                 </div>
                 <div class="form-group">
                     <label>月工资</label>
-                    <input class="form-control" type="text" placeholder="月工资"
-                           name="wage">
+                    <input class="form-control" type="text" placeholder="月工资" name="wage">
                 </div>
                 <div class="form-group">
                     <label>性别</label><br>

@@ -9,23 +9,19 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="form-group">
                     <label>会员编号</label>
-                    <input class="form-control" type="text" placeholder="会员编号"
-                           name="no">
+                    <input class="form-control" type="text" placeholder="会员编号" name="no">
                 </div>
                 <div class="form-group">
                     <label>会员名</label>
-                    <input class="form-control" type="text" placeholder="会员名"
-                           name="name">
+                    <input class="form-control" type="text" placeholder="会员名" name="name">
                 </div>
                 <div class="form-group">
                     <label>卡内余额</label>
-                    <input class="form-control" type="text" placeholder="卡内余额"
-                           name="balance">
+                    <input class="form-control" type="text" placeholder="卡内余额" name="balance">
                 </div>
                 <div class="form-group">
                     <label>卡密码</label>
-                    <input class="form-control" type="text" placeholder="卡密码"
-                           name="password">
+                    <input class="form-control" type="text" placeholder="卡密码" name="password">
                 </div>
                 <div class="form-group">
                     <label>注册时间</label>
@@ -35,10 +31,12 @@
                     <button class="btn btn-warning" type="reset">重置</button>
                 </div>
                 <div class="text-right">
-                    <button class="btn btn-primary" type="submit" name="action"
-                            value="insert">提交
+                    <button class="btn btn-primary" type="submit" name="action" value="insert">
+                        提交
                     </button>
-                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button class="btn btn-danger" data-dismiss="modal">
+                        取消
+                    </button>
                 </div>
             </form>
         </div>

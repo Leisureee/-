@@ -48,49 +48,38 @@
                             <form class="form-group" action="GoodsController"
                                   method="post">
                                 <input type="hidden" name="id" value="${v["id"]}">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label>商品编号</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="商品编号" name="no"
-                                           value="${v["no"]}">
+                                    <input class="form-control" type="text" placeholder="商品编号" name="no" value="${v["no"]}">
                                 </div>
                                 <div class="form-group">
                                     <label>商品名</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="商品名" name="name"
-                                           value="${v["name"]}">
+                                    <input class="form-control" type="text" placeholder="商品名" name="name" value="${v["name"]}">
                                 </div>
                                 <div class="form-group">
                                     <label>类别</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="类别" name="category"
-                                           value="${v["category"]}">
+                                    <input class="form-control" type="text" placeholder="类别" name="category" value="${v["category"]}">
                                 </div>
                                 <div class="form-group">
                                     <label>售价</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="售价" name="price"
-                                           value="${v["price"]}">
+                                    <input class="form-control" type="text" placeholder="售价" name="price" value="${v["price"]}">
                                 </div>
                                 <div class="form-group">
                                     <label>进价</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="进价" name="pprice"
-                                           value="${v["purchasePrice"]}">
+                                    <input class="form-control" type="text" placeholder="进价" name="purchasePrice" value="${v["purchasePrice"]}">
                                 </div>
                                 <div class="form-group">
                                     <label>库存</label>
-                                    <input class="form-control" type="text"
-                                           placeholder="库存" name="inventory"
-                                           value="${v["inventory"]}">
+                                    <input class="form-control" type="text" placeholder="库存" name="inventory" value="${v["inventory"]}">
                                 </div>
                                 <div class="text-left">
                                     <button class="btn btn-warning" type="reset">重置
                                     </button>
                                 </div>
                                 <div class="text-right">
-                                    <button class="btn btn-primary" type="submit"
-                                            name="action" value="update">提交
+                                    <button class="btn btn-primary" type="submit" name="action" value="update">
+                                        提交
                                     </button>
                                     <button class="btn btn-danger" data-dismiss="modal">
                                         取消
