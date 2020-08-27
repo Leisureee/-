@@ -1,10 +1,10 @@
 package me.lolico.sms.config;
 
-import lombok.AllArgsConstructor;
 import me.lolico.sms.entity.User;
 import me.lolico.sms.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,10 +33,16 @@ import java.sql.SQLException;
  * @author lolico
  */
 @EnableWebSecurity
-@AllArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
+
+    @Value("${spring.h2.console.enabled:false}")
+    private Boolean enableH2Console;
+
+    public WebSecurityConfiguration(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -49,12 +55,23 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-                .antMatchers("/webjars/**", "/image/**");
+                .antMatchers("/webjars/**", "/image/**", "/favicon.ico");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
+        if (Boolean.TRUE.equals(enableH2Console)) {
+            http
+                    .headers()
+                        .frameOptions().sameOrigin()
+                        .and()
+                    .csrf()
+                        .ignoringAntMatchers("/h2-console/**")
+                        .and()
+                    .authorizeRequests()
+                        .antMatchers("/h2-console/**").permitAll();
+        }
         http
                 .authorizeRequests()
                     .mvcMatchers("/account/register").permitAll()
