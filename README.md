@@ -15,14 +15,14 @@ Application run with `dev` environment that using memory database h2 by default.
 ### Execute with jar package
 
 ```shell script
-./mvnw clean package
+./mvnw clean package -DskipTests -Pprd
 cd target && java -jar sms-boot-exec.war
 ```
 
 ### Deploy to external tomcat container
 
 ```shell script
-./mvnw clean package
+./mvnw clean package -DskipTests -Pprd
 cp target/sms-boot.war ${CATALINA_HOME}/webapps
 ```
 
