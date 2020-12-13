@@ -137,18 +137,12 @@
         </profile>
         <profile>
             <id>test</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
                 <profile.active>test</profile.active>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
                 <profile.active>prod</profile.active>
             </properties>
