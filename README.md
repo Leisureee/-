@@ -31,20 +31,28 @@ cp target/sms-boot.war ${CATALINA_HOME}/webapps
 jpackage require wix3.0+. Before packaging, make sure jdk11+
 and [wix3.0+](https://wixtoolset.org/releases/) is installed on system.
 
-1. Installer
+1. mvnw package
 
-```shell script
+```shell
 ./mvnw clean package -DskipTests -Pdev
-mkdir lib && cp target/sms-boot-exec.war lib
-jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor raven --win-dir-chooser --win-shortcut --win-menu --win-menu-group "sms-boot"
 ```
 
-2. Portable file
+2. copy war to lib
 
-```shell script
-./mvnw clean package -DskipTests -Pdev
-mkdir lib && cp target/sms-boot-exec.war lib
-jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor raven --type app-image
+```shell
+cd target && mkdir lib
+cp sms-boot-exec.war lib # windows using copy ".\sms-boot-exec.war" ".\lib"
+```
+
+3. packaging
+
+```shell
+rm -rf sms-boot # make sure the sms-boot directory is clean
+# Installer
+jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolico.me --win-dir-chooser --win-shortcut --win-menu --win-menu-group "sms-boot"
+# Portable file
+jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolico.me --type app-image
+tar -czvf sms-boot.tar.gz sms-boot
 ```
 
 ## License
