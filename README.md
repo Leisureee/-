@@ -41,7 +41,7 @@ and [wix3.0+](https://wixtoolset.org/releases/) is installed on system.
 
 ```shell
 cd target && mkdir lib
-cp sms-boot-exec.war lib # windows using copy ".\sms-boot-exec.war" ".\lib"
+cp ./sms-boot-exec.war ./lib # windows using copy ".\sms-boot-exec.war" ".\lib"
 ```
 
 3. packaging
@@ -54,6 +54,8 @@ jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolic
 jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolico.me --type app-image
 tar -czvf sms-boot.tar.gz sms-boot
 ```
+
+Visit http://localhost:8080
 
 ## License
 
