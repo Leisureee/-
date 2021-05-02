@@ -3,9 +3,8 @@ package me.lolico.sms.controller;
 import me.lolico.sms.entity.Employee;
 import me.lolico.sms.service.EmployeeService;
 import me.lolico.sms.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
@@ -27,7 +25,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(EmployeeController.class)
 @ActiveProfiles("test")
 public class EmployeeControllerTest {
@@ -40,7 +37,7 @@ public class EmployeeControllerTest {
 
     List<Employee> employeeList;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         Employee employee = new Employee();
         employee.setName("test");

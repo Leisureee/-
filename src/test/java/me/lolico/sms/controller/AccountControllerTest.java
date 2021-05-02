@@ -2,14 +2,12 @@ package me.lolico.sms.controller;
 
 import me.lolico.sms.entity.User;
 import me.lolico.sms.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.when;
@@ -18,7 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(value = AccountController.class)
 @ActiveProfiles("test")
 public class AccountControllerTest {
@@ -29,7 +26,7 @@ public class AccountControllerTest {
     @MockBean
     UserService userService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         when(userService.getUserByName("exist")).thenReturn(new User());
         when(userService.getUserByName("notExist")).thenReturn(null);
