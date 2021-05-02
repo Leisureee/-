@@ -34,7 +34,7 @@ and [wix3.0+](https://wixtoolset.org/releases/) is installed on system.
 1. Installer
 
 ```shell script
-./mvnw clean package DskipTests -Pdev
+./mvnw clean package -DskipTests -Pdev
 mkdir lib && cp target/sms-boot-exec.war lib
 jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor raven --win-dir-chooser --win-shortcut --win-menu --win-menu-group "sms-boot"
 ```
@@ -42,7 +42,7 @@ jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor raven
 2. Portable file
 
 ```shell script
-./mvnw clean package DskipTests -Pdev
+./mvnw clean package -DskipTests -Pdev
 mkdir lib && cp target/sms-boot-exec.war lib
 jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor raven --type app-image
 ```
