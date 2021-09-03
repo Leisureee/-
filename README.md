@@ -1,7 +1,7 @@
 ## Quick Start
 
 Before start application, you may want to be able to configure external service like mysql, edit `application-{env}.properties` and make `spring.profiles.active={env}`.
- 
+
 **Note:**
 
 Application run with `dev` environment that using memory database h2 by default.
@@ -52,6 +52,8 @@ rm -rf sms-boot # make sure the sms-boot directory is clean
 jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolico.me --win-dir-chooser --win-shortcut --win-menu --win-menu-group "sms-boot"
 # Portable file
 jpackage --name sms-boot --input lib --main-jar sms-boot-exec.war --vendor lolico.me --type app-image
+# Msi
+jpackage --name sms-boot --type msi --app-image sms-boot --vendor lolico.me --win-dir-chooser --win-shortcut --win-menu --win-menu-group "sms-boot"
 tar -czvf sms-boot.tar.gz sms-boot
 ```
 
